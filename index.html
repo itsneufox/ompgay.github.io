@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>open.mp goes gay - Pride Month Meme Edition</title>
+    <title>open.mp goes gay - Pride Month Edition</title>
     <style>
         * {
             margin: 0;
@@ -101,18 +101,19 @@
             font-size: 3.5rem;
             font-weight: 900;
             color: white;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 105, 180, 0.8);
             margin-bottom: 15px;
-            background: linear-gradient(45deg, #ff0040, #ffed4e, #00f260, #0099ff, #b347d9, #ff69b4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 2s ease-in-out infinite, textBounce 3s ease-in-out infinite;
+            animation: textBounce 3s ease-in-out infinite, colorShift 4s ease-in-out infinite;
         }
 
-        @keyframes textShimmer {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+        @keyframes colorShift {
+            0% { color: #ff0040; }
+            16% { color: #ff8c00; }
+            33% { color: #ffed4e; }
+            50% { color: #00f260; }
+            66% { color: #0099ff; }
+            83% { color: #b347d9; }
+            100% { color: #ff69b4; }
         }
 
         @keyframes textBounce {
@@ -325,7 +326,7 @@
     </div>
 
     <footer>
-        <p>🏳️‍🌈 openmp.gay - Definitely not affiliated with open.mp • Meme Website 2025 • Made with ❤️ and questionable humor 🏳️‍🌈</p>
+        <p>🏳️‍🌈 openmp.gay - Definitely not affiliated with open.mp • Made with ❤️ and questionable humor 🏳️‍🌈</p>
     </footer>
 
     <script>
