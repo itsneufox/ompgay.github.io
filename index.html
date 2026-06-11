@@ -3,406 +3,1217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>open.mp goes gay - Pride Month Edition</title>
+    <title>open.mp goes gay</title>
     <style>
+        :root {
+            --bg: #fff1f7;
+            --surface: rgba(255, 255, 255, 0.82);
+            --surface-strong: rgba(255, 255, 255, 0.95);
+            --text: #241226;
+            --muted: #6d4a66;
+            --line: rgba(91, 31, 88, 0.16);
+            --shadow: 0 24px 70px rgba(170, 39, 130, 0.16);
+            --red: #ff476f;
+            --orange: #ff9a3d;
+            --yellow: #ffd84f;
+            --green: #4fd48b;
+            --blue: #3f8cff;
+            --violet: #9f4dff;
+            --pink: #ff5fc9;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(45deg, #ff0040, #ff8c00, #ffed4e, #00f260, #0099ff, #b347d9, #ff69b4, #00ffff);
-            background-size: 400% 400%;
-            animation: gradientShift 6s ease infinite;
             min-height: 100vh;
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 12% 12%, rgba(255, 71, 111, 0.28), transparent 24%),
+                radial-gradient(circle at 88% 10%, rgba(159, 77, 255, 0.24), transparent 28%),
+                radial-gradient(circle at 50% 100%, rgba(79, 212, 139, 0.18), transparent 30%),
+                linear-gradient(180deg, #fff9fc 0%, var(--bg) 42%, #ffe5f2 100%);
             overflow-x: hidden;
+            transition: background 260ms ease, filter 260ms ease;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 50% 100%; }
-            75% { background-position: 0% 0%; }
-            100% { background-position: 0% 50%; }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.35) 46%, transparent 100%),
+                radial-gradient(circle at 20% 20%, rgba(255, 95, 201, 0.08) 0 8px, transparent 8px),
+                radial-gradient(circle at 80% 30%, rgba(63, 140, 255, 0.07) 0 10px, transparent 10px);
+            background-size: auto, 120px 120px, 140px 140px;
+            pointer-events: none;
+            z-index: -2;
         }
 
-        .container {
-            max-width: 1200px;
+        .page-shell {
+            width: min(1720px, calc(100vw - 40px));
             margin: 0 auto;
-            padding: 20px;
+            padding: 32px 24px 56px;
+            transition: transform 260ms ease, filter 260ms ease;
         }
 
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .logo-section {
+        .masthead {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid rgba(255, 95, 201, 0.18);
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.78rem;
+            color: var(--muted);
         }
 
-        .pride-logo {
-            width: 200px;
-            height: 200px;
-            display: flex;
+        .masthead strong {
+            color: var(--text);
+        }
+
+        .hero {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+            gap: 28px;
+            align-items: stretch;
+            margin-bottom: 28px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            right: 18px;
+            top: -10px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(255, 216, 79, 0.34) 0%, rgba(255, 95, 201, 0.18) 45%, transparent 72%);
+            filter: blur(18px);
+            pointer-events: none;
+        }
+
+        .hero-copy,
+        .hero-panel,
+        .section-block,
+        .feature-card,
+        .footer-panel {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-copy {
+            position: relative;
+            padding: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .hero-copy::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 12px;
+            background: linear-gradient(180deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet), var(--pink));
+        }
+
+        .hero-copy::after {
+            content: "";
+            position: absolute;
+            right: -42px;
+            top: -42px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 95, 201, 0.3) 0%, rgba(159, 77, 255, 0.18) 45%, transparent 72%);
+            filter: blur(4px);
+        }
+
+        .eyebrow {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            animation: pulse 2s ease-in-out infinite alternate, wiggle 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(255, 105, 180, 0.8));
+            gap: 10px;
+            max-width: 100%;
+            margin-bottom: 18px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(255, 71, 111, 0.16), rgba(159, 77, 255, 0.18), rgba(255, 95, 201, 0.14));
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            flex-wrap: wrap;
+            box-shadow: inset 0 0 0 1px rgba(255, 95, 201, 0.12);
         }
 
-        .pride-logo img {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
-            animation: bounce 2s ease-in-out infinite, glow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-2deg); }
-            75% { transform: rotate(2deg); }
-        }
-
-        @keyframes glow {
-            0% { filter: brightness(1) saturate(1.2); }
-            100% { filter: brightness(1.2) saturate(1.5); }
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+        h1,
+        h2,
+        h3 {
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            letter-spacing: 0;
         }
 
         h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: white;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 105, 180, 0.8);
-            margin-bottom: 15px;
-            animation: textBounce 3s ease-in-out infinite, colorShift 4s ease-in-out infinite;
+            max-width: 10ch;
+            font-size: clamp(3rem, 7vw, 6.2rem);
+            line-height: 1.02;
+            margin-bottom: 28px;
+            padding-bottom: 0.14em;
+            text-shadow: 0 6px 20px rgba(255, 95, 201, 0.18);
+            background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet), var(--pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        @keyframes colorShift {
-            0% { color: #ff0040; }
-            16% { color: #ff8c00; }
-            33% { color: #ffed4e; }
-            50% { color: #00f260; }
-            66% { color: #0099ff; }
-            83% { color: #b347d9; }
-            100% { color: #ff69b4; }
+        .hero-copy p {
+            max-width: 56ch;
+            font-size: 1.12rem;
+            line-height: 1.7;
+            color: var(--muted);
         }
 
-        @keyframes textBounce {
-            0%, 50%, 100% { transform: scale(1); }
-            25% { transform: scale(1.05); }
-            75% { transform: scale(0.98); }
+        .hero-copy p::first-line {
+            color: #8a276d;
         }
 
-        .subtitle {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 300;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
         }
 
-        .content {
+        .hero-stickers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .sticker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(159, 77, 255, 0.16);
+            transform: rotate(-2deg);
+        }
+
+        .sticker:nth-child(2) {
+            transform: rotate(2deg);
+        }
+
+        .sticker:nth-child(3) {
+            transform: rotate(-3deg);
+        }
+
+        .sticker-hot {
+            background: linear-gradient(90deg, var(--red), var(--pink));
+        }
+
+        .sticker-camp {
+            background: linear-gradient(90deg, var(--violet), var(--blue));
+        }
+
+        .sticker-slay {
+            background: linear-gradient(90deg, var(--orange), var(--yellow));
+            color: #4a2143;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(36, 18, 38, 0.2);
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(159, 77, 255, 0.2);
+        }
+
+        .button-primary {
+            background: linear-gradient(90deg, var(--red), var(--violet), var(--pink));
+            color: #fff;
+            box-shadow: 0 14px 28px rgba(159, 77, 255, 0.22);
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.65);
+            color: var(--text);
+        }
+
+        .button-secondary:hover {
+            border-color: rgba(255, 95, 201, 0.38);
+        }
+
+        .button-secret {
+            position: relative;
+        }
+
+        .button-secret::after {
+            content: " ?";
+            opacity: 0.45;
+        }
+
+        .hero-panel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            padding: 28px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.62)),
+                linear-gradient(180deg, var(--red) 0 14.28%, var(--orange) 14.28% 28.56%, var(--yellow) 28.56% 42.84%, var(--green) 42.84% 57.12%, var(--blue) 57.12% 71.4%, var(--violet) 71.4% 85.68%, var(--pink) 85.68% 100%);
+        }
+
+        .hero-panel::before,
+        .hero-panel::after {
+            position: absolute;
+            font-size: 1.4rem;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .hero-panel::before {
+            content: "✨";
+            right: 20px;
+            top: 16px;
+            animation: twinkle 2.6s ease-in-out infinite;
+        }
+
+        .hero-panel::after {
+            content: "💖";
+            left: 20px;
+            bottom: 18px;
+            animation: twinkle 3.1s ease-in-out infinite;
+        }
+
+        .logo-wrap {
+            position: relative;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            place-items: center;
+            min-height: 360px;
+            margin-bottom: 24px;
         }
 
-        @media (min-width: 768px) {
-            .content {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .logo-wrap::before,
+        .logo-wrap::after {
+            content: "";
+            position: absolute;
+            inset: 14% 12%;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 95, 201, 0.18);
+            pointer-events: none;
         }
 
-        @media (min-width: 1200px) {
-            .content {
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 1000px;
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 40px;
-            }
+        .logo-wrap::after {
+            inset: 3% 6%;
+            transform: rotate(-8deg);
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+        .logo-wrap::before {
+            box-shadow: 0 0 0 18px rgba(255, 255, 255, 0.14), 0 0 80px rgba(255, 95, 201, 0.16);
+        }
+
+        .hero-panel img {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 360px);
+            height: auto;
+            filter: drop-shadow(0 22px 26px rgba(159, 77, 255, 0.28));
+            animation: settle 900ms ease-out;
+            cursor: pointer;
+        }
+
+        .hero-note {
+            display: grid;
+            gap: 12px;
+            padding: 18px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(255, 95, 201, 0.14);
+            font-size: 0.98rem;
+            line-height: 1.55;
+            color: var(--muted);
+        }
+
+        .hero-note strong {
+            color: var(--text);
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            margin-bottom: 28px;
+            scroll-margin-top: 72px;
+        }
+
+        .section-block {
+            border-radius: 8px;
+            padding: 32px;
             position: relative;
             overflow: hidden;
         }
 
-        .card::before {
-            content: '';
+        .section-block::after {
+            content: "";
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .card:hover::before {
-            left: 100%;
-        }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-        }
-
-        .card h2 {
-            font-size: 1.8rem;
-            color: white;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .card p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            font-size: 1.1rem;
-        }
-
-        .cta-section {
-            text-align: center;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(45deg, #ff0040, #b347d9);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border: 2px solid transparent;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(45deg, #b347d9, #ff0040);
-        }
-
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .heart {
-            position: absolute;
-            font-size: 30px;
-            animation: float 6s ease-in-out infinite;
+            inset: auto 24px 0 24px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet), var(--pink));
             opacity: 0.8;
         }
 
-        .unicorn {
-            position: absolute;
-            font-size: 40px;
-            animation: float 8s ease-in-out infinite;
-            opacity: 0.7;
+        .section-label {
+            margin-bottom: 14px;
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
         }
 
-        @keyframes float {
+        .section-block h2 {
+            margin-bottom: 14px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1;
+        }
+
+        .section-block p {
+            line-height: 1.7;
+            color: var(--muted);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        @media (min-width: 1400px) {
+            .hero {
+                grid-template-columns: minmax(0, 1.3fr) minmax(420px, 0.7fr);
+                gap: 32px;
+            }
+
+            .section-grid {
+                grid-template-columns: minmax(0, 1.2fr) minmax(420px, 0.8fr);
+                gap: 32px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 24px;
+            }
+        }
+
+        .feature-card {
+            position: relative;
+            padding: 28px;
+            border-radius: 8px;
+            overflow: hidden;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.76)),
+                radial-gradient(circle at top right, rgba(255, 95, 201, 0.12), transparent 38%);
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet), var(--pink));
+        }
+
+        .feature-card::after {
+            content: "✦";
+            position: absolute;
+            right: 18px;
+            top: 18px;
+            font-size: 1rem;
+            color: rgba(255, 95, 201, 0.55);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 14px;
+            font-size: 1.35rem;
+            color: #862c87;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .feature-card code {
+            padding: 0.08em 0.36em;
+            border-radius: 999px;
+            background: rgba(159, 77, 255, 0.12);
+            color: #862c87;
+            cursor: pointer;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 24px;
+        }
+
+        .stat {
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            cursor: pointer;
+        }
+
+        .stat strong {
+            display: block;
+            margin-bottom: 6px;
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            font-size: 2rem;
+            line-height: 1;
+            color: #9d2d90;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.96rem;
+            line-height: 1.4;
+        }
+
+        .footer-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: end;
+            gap: 20px 28px;
+            padding: 22px 28px 20px;
+            border-radius: 8px;
+        }
+
+        .footer-panel p {
+            max-width: 64ch;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.98rem;
+        }
+
+        .footer-note {
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            font-size: 0.68rem;
+            line-height: 1.4;
+            color: rgba(109, 74, 102, 0.58);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-meta {
+            display: grid;
+            justify-items: end;
+            gap: 6px;
+        }
+
+        .masthead span:last-child,
+        .section-label {
+            color: #9d2d90;
+        }
+
+        .ticker {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(255, 71, 111, 0.12), rgba(159, 77, 255, 0.14), rgba(255, 95, 201, 0.12));
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+        }
+
+        .ticker-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, var(--red), var(--pink));
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+
+        .sparkles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 0 0 8px rgba(255, 95, 201, 0.1);
+            opacity: 0;
+            animation: drift linear forwards;
+        }
+
+        .secret-toast {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            max-width: min(360px, calc(100vw - 36px));
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 95, 201, 0.22);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 238, 249, 0.96));
+            box-shadow: 0 18px 42px rgba(159, 77, 255, 0.24);
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            font-size: 0.92rem;
+            line-height: 1.45;
+            color: #7a2c74;
+            transform: translateY(18px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 180ms ease, opacity 180ms ease;
+            z-index: 20;
+        }
+
+        .secret-toast.is-visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        body.party-mode .hero-copy,
+        body.party-mode .hero-panel,
+        body.party-mode .section-block,
+        body.party-mode .feature-card,
+        body.party-mode .footer-panel {
+            box-shadow: 0 28px 80px rgba(255, 95, 201, 0.22);
+        }
+
+        body.party-mode {
+            background:
+                radial-gradient(circle at 12% 12%, rgba(255, 71, 111, 0.42), transparent 26%),
+                radial-gradient(circle at 88% 10%, rgba(159, 77, 255, 0.38), transparent 30%),
+                radial-gradient(circle at 50% 100%, rgba(79, 212, 139, 0.3), transparent 34%),
+                linear-gradient(180deg, #fff0fa 0%, #ffd5ef 42%, #ffd0e4 100%);
+            filter: saturate(1.18);
+            animation: partyBackground 1.4s linear infinite;
+        }
+
+        body.party-mode .page-shell {
+            transform: scale(1.01);
+            filter: saturate(1.12);
+            animation: partyWobble 1.8s ease-in-out infinite;
+        }
+
+        body.party-mode .hero::after,
+        body.party-mode .hero-copy::after {
+            filter: blur(10px);
+            opacity: 1;
+        }
+
+        body.party-mode h1 {
+            text-shadow: 0 10px 26px rgba(255, 95, 201, 0.3);
+            animation: partyBlink 0.72s steps(2, end) infinite, partyHue 2s linear infinite;
+        }
+
+        body.party-mode .sticker {
+            animation: stickerBounce 0.8s ease-in-out infinite;
+        }
+
+        body.party-mode .hero-copy,
+        body.party-mode .hero-panel,
+        body.party-mode .section-block,
+        body.party-mode .feature-card,
+        body.party-mode .footer-panel {
+            animation: partyFlash 1.1s linear infinite;
+        }
+
+        body.party-mode .ticker-dot,
+        body.party-mode .hero-panel::before,
+        body.party-mode .hero-panel::after {
+            animation-duration: 0.45s;
+        }
+
+        body.party-mode .sparkle {
+            box-shadow: 0 0 0 14px rgba(255, 216, 79, 0.2);
+            animation-duration: 2.4s !important;
+        }
+
+        body.party-mode::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 15;
+            border: 8px solid transparent;
+            border-image: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet), var(--pink)) 1;
+            opacity: 0.85;
+            animation: borderBlink 0.6s steps(2, end) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.75;
+            }
+            50% {
+                transform: scale(1.24) rotate(8deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes stickerBounce {
+            0%, 100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+            50% {
+                transform: translateY(-6px) rotate(2deg);
+            }
+        }
+
+        @keyframes partyBackground {
             0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
+                filter: hue-rotate(0deg) saturate(1.18);
             }
             100% {
-                transform: translateY(-100px) rotate(360deg);
+                filter: hue-rotate(360deg) saturate(1.28);
+            }
+        }
+
+        @keyframes partyWobble {
+            0%, 100% {
+                transform: scale(1.01) rotate(0deg);
+            }
+            25% {
+                transform: scale(1.012) rotate(0.35deg);
+            }
+            75% {
+                transform: scale(1.012) rotate(-0.35deg);
+            }
+        }
+
+        @keyframes partyBlink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes partyHue {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        @keyframes partyFlash {
+            0%, 100% {
+                box-shadow: 0 28px 80px rgba(255, 95, 201, 0.22);
+            }
+            33% {
+                box-shadow: 0 28px 80px rgba(63, 140, 255, 0.24);
+            }
+            66% {
+                box-shadow: 0 28px 80px rgba(255, 216, 79, 0.28);
+            }
+        }
+
+        @keyframes borderBlink {
+            0%, 100% {
+                opacity: 0.95;
+            }
+            50% {
+                opacity: 0.35;
+            }
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate3d(0, 20px, 0) scale(0.8);
+                opacity: 0;
+            }
+            12% {
+                opacity: 0.85;
+            }
+            100% {
+                transform: translate3d(80px, -120vh, 0) scale(1.1);
                 opacity: 0;
             }
         }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.25);
+                opacity: 1;
+            }
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .subtitle { font-size: 1.2rem; }
-            .pride-logo { width: 150px; height: 150px; }
-            .pride-logo::before { font-size: 60px; }
-            .content { grid-template-columns: 1fr; }
+        @keyframes settle {
+            0% {
+                transform: translateY(16px) scale(0.96);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .hero,
+            .section-grid,
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                gap: 20px;
+            }
+
+            .logo-wrap {
+                min-height: 280px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-panel {
+                grid-template-columns: 1fr;
+                align-items: start;
+            }
+
+            .footer-meta {
+                justify-items: start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-shell {
+                width: min(100vw - 16px, 100%);
+                padding: 18px 14px 40px;
+            }
+
+            .masthead {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .hero-copy,
+            .hero-panel,
+            .section-block,
+            .feature-card,
+            .footer-panel {
+                padding: 22px;
+            }
+
+            .hero-stickers {
+                gap: 8px;
+            }
+
+            h1 {
+                max-width: none;
+                font-size: clamp(2.4rem, 12vw, 3.1rem);
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-copy p,
+            .section-block p,
+            .feature-card p,
+            .footer-panel p,
+            .hero-note {
+                font-size: 1rem;
+            }
+
+            .logo-wrap {
+                min-height: 220px;
+                margin-bottom: 18px;
+            }
+
+            .hero-panel img {
+                width: min(100%, 250px);
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .ticker {
+                white-space: normal;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .secret-toast {
+                right: 12px;
+                bottom: 12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="floating-hearts" id="hearts"></div>
-    
-    <div class="container">
-        <header>
-            <div class="logo-section">
-                <div class="pride-logo">
-                    <img src="assets/logo.png" alt="open.mp logo">
-                </div>
+    <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+    <main class="page-shell">
+        <div class="masthead">
+            <span><strong>openmp.gay</strong> pride month edition</span>
+        </div>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow">Pride Month Network Upgrade</div>
                 <h1>open.mp goes gay</h1>
-                <p class="subtitle">when your SA-MP server supports more than just heterosexual connections</p>
-            </div>
-        </header>
+                <p>
+                    when your SA-MP server supports more than just heterosexual connections
+                </p>
 
-        <div class="content">
-            <div class="card">
-                <h2>🌈 Connection Status</h2>
-                <p>Server now accepts all types of connections! Whether you're connecting via TCP, UDP, or just vibing with your true self - we've got you covered. No more straight-only protocols here!</p>
-            </div>
+                <div class="hero-stickers">
+                    <span class="sticker sticker-hot">hot gay server summer</span>
+                    <span class="sticker sticker-camp">100% slay uptime</span>
+                    <span class="sticker sticker-slay">packets serving cunt</span>
+                </div>
 
-            <div class="card">
-                <h2>🏳️‍🌈 Rainbow Packets</h2>
-                <p>Our network packets are now transmitted in full spectrum color. Each data transmission carries a little extra fabulousness. Warning: May cause increased server performance and unexplained happiness.</p>
-            </div>
-
-            <div class="card">
-                <h2>💖 Inclusive Gamemode</h2>
-                <p>New gamemode: Pride & Prejudice RP. Create your character, find love, fight homophobia, and drive around Los Santos in a rainbow Infernus. Compatible with all existing gay.pwn includes.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="https://open.mp" title="the real site, not this homosexual network incident">Go to the actual open.mp</a>
+                    <a class="button button-secondary button-secret" href="https://open.mp/docs" title="yes diva, these are the real docs">Read the actual docs, diva</a>
+                </div>
             </div>
 
-            <div class="card">
-                <h2>🎮 API Update</h2>
-                <p>Latest open.mp API now includes GetPlayerSexuality() and SetServerPride() functions. Documentation available at docs.openmp.gay (coming soon™). Also added native support for rainbow name tags.</p>
+            <aside class="hero-panel">
+                <div class="logo-wrap">
+                    <img src="assets/logo.png" alt="open.mp pride logo" id="logo-secret" title="click three times if you feel the spirit move you">
+                </div>
+                <div class="hero-note">
+                    <strong>Status report:</strong>
+                    <span>All connections accepted. open.mp is still doing UDP like God and Kalcor intended, just with noticeably better vibes.</span>
+                </div>
+            </aside>
+        </section>
+
+        <section class="section-grid" id="briefing">
+            <div class="section-block">
+                <div class="section-label">Server Bulletin</div>
+                <h2>Connection status: fabulous.</h2>
+                <p>
+                    Server now accepts all types of connections. 0.3.7 clients, open.mp clients,
+                    and anyone arriving with suspiciously well-coordinated nametag colors are all welcome.
+                </p>
+
+                <div class="stats">
+                    <div class="stat">
+                        <strong>99.9%</strong>
+                        <span>rainbow packet delivery uptime</span>
+                    </div>
+                    <div class="stat" data-secret-stat="support">
+                        <strong>24/7</strong>
+                        <span>fabulous network support hours</span>
+                    </div>
+                    <div class="stat" data-secret-stat="protocols">
+                        <strong>0</strong>
+                        <span>straight-only protocols remaining</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="cta-section">
-            <h2 style="color: white; margin-bottom: 20px; font-size: 2rem;">Ready to Connect?</h2>
-            <a href="https://open.mp" class="cta-button">Visit open.mp (the real one)</a>
-        </div>
-    </div>
+            <div class="section-block">
+                <div class="section-label">Packet Upgrade</div>
+                <h2>Packets now ship in full spectrum color.</h2>
+                <p>
+                    Relax, the packets are still UDP. They are just arriving with better posture,
+                    cleaner sequencing, and the kind of confidence you usually only get from a server
+                    running thirty filterscripts and no shame.
+                </p>
+            </div>
+        </section>
 
-    <footer>
-        <p>🏳️‍🌈 openmp.gay - Definitely not affiliated with open.mp • Made with ❤️ and questionable humor 🏳️‍🌈</p>
-    </footer>
+        <section class="feature-grid" id="features">
+            <article class="feature-card">
+                <h3>Inclusive Gamemode</h3>
+                <p>
+                    New gamemode: Pride &amp; Prejudice RP. Spawn in, pick a skin, fall in love, start
+                    discourse in /o, and do ceremonial laps around Los Santos in a rainbow Infernus.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <h3>Rainbow Packets</h3>
+                <p>
+                    Our packets still contain the usual coordinates, weapon IDs, and bad decisions.
+                    They just move through RakNet with a little extra sparkle now.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <h3>API Update</h3>
+                <p>
+                    Latest open.mp API now includes <code>GetPlayerSexuality()</code> and
+                    <code>SetServerPride()</code>. Rumor says <code>OnPlayerComeOut</code> was rejected
+                    for being too powerful for legacy Pawn.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <h3>Server Policy</h3>
+                <p>
+                    Homophobia is now treated like desync: annoying, embarrassing, and usually your own fault.
+                    Please reconnect with better vibes.
+                </p>
+            </article>
+        </section>
+
+        <footer class="footer-panel">
+            <p>
+                Stable connections, fruitier packets, and full compatibility with dramatic multiplayer infrastructure.
+            </p>
+            <div class="footer-meta">
+                <div class="ticker">
+                    <span class="ticker-dot"></span>
+                    <span>fabulous uptime nominal</span>
+                </div>
+                <div class="footer-note">
+                    site by itsneufox 2026 • spiritually affiliated, legally absolutely not
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div class="secret-toast" id="secret-toast" aria-live="polite"></div>
+    <audio id="party-audio" hidden loop preload="auto">
+        <source src="assets/party-mode.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        // Create floating hearts and fabulous things
-        function createFloatingElement() {
-            const element = document.createElement('div');
-            const emojis = ['💖', '🏳️‍🌈', '✨', '🦄', '💅', '👑', '🌈', '💜', '🔥', '😍', '🎉', '💯'];
-            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-            
-            element.className = randomEmoji === '🦄' ? 'unicorn' : 'heart';
-            element.innerHTML = randomEmoji;
-            element.style.left = Math.random() * 100 + '%';
-            element.style.animationDelay = Math.random() * 2 + 's';
-            element.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            
-            document.getElementById('hearts').appendChild(element);
-            
-            setTimeout(() => {
-                element.remove();
-            }, 9000);
+        const sparklesRoot = document.getElementById("sparkles");
+        const toast = document.getElementById("secret-toast");
+        const logoSecret = document.getElementById("logo-secret");
+        const partyAudio = document.getElementById("party-audio");
+        const secretStats = document.querySelectorAll("[data-secret-stat]");
+        const codeSecrets = document.querySelectorAll(".feature-card code");
+        let toastTimer;
+        let logoClicks = 0;
+        let logoClickTimer;
+        let typedBuffer = "";
+        let sparkleInterval;
+        const secretWords = ["gay", "gat", "samp", "openmp"];
+        const konamiCode = [
+            "ArrowUp",
+            "ArrowUp",
+            "ArrowDown",
+            "ArrowDown",
+            "ArrowLeft",
+            "ArrowRight",
+            "ArrowLeft",
+            "ArrowRight",
+            "b",
+            "a"
+        ];
+        let konamiBuffer = [];
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add("is-visible");
+            window.clearTimeout(toastTimer);
+            toastTimer = window.setTimeout(() => {
+                toast.classList.remove("is-visible");
+            }, 2600);
         }
 
-        // Create fabulous elements more frequently
-        setInterval(createFloatingElement, 500);
+        function setPartyMusic(enabled) {
+            if (enabled) {
+                partyAudio.currentTime = 0;
+                const playAttempt = partyAudio.play();
 
-        // Add some interactive sparkle effects
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.85) {
-                const sparkle = document.createElement('div');
-                sparkle.style.position = 'fixed';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                sparkle.style.fontSize = '25px';
-                sparkle.style.pointerEvents = 'none';
-                sparkle.style.zIndex = '1000';
-                const sparkleEmojis = ['✨', '💫', '⭐', '🌟', '💖', '🦄'];
-                sparkle.innerHTML = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
-                sparkle.style.animation = 'float 2s ease-out forwards';
-                
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 2000);
+                if (playAttempt && typeof playAttempt.catch === "function") {
+                    playAttempt.catch(() => {
+                        showToast("Party mode is on, but your browser wants one more click for audio.");
+                    });
+                }
+
+                return;
+            }
+
+            partyAudio.pause();
+            partyAudio.currentTime = 0;
+        }
+
+        function spawnSparkle() {
+            const sparkle = document.createElement("span");
+            const size = Math.random() * 8 + 6;
+            sparkle.className = "sparkle";
+            sparkle.style.left = Math.random() * 100 + "vw";
+            sparkle.style.bottom = "-20px";
+            sparkle.style.width = size + "px";
+            sparkle.style.height = size + "px";
+            sparkle.style.animationDuration = Math.random() * 4 + 8 + "s";
+            sparkle.style.animationDelay = Math.random() * 1.2 + "s";
+            sparklesRoot.appendChild(sparkle);
+
+            window.setTimeout(() => {
+                sparkle.remove();
+            }, 13000);
+        }
+
+        function restartSparkles() {
+            if (sparkleInterval) {
+                window.clearInterval(sparkleInterval);
+            }
+
+            if (reduceMotion) {
+                return;
+            }
+
+            sparkleInterval = window.setInterval(
+                spawnSparkle,
+                document.body.classList.contains("party-mode") ? 220 : 1200
+            );
+        }
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (!reduceMotion) {
+            for (let i = 0; i < 14; i += 1) {
+                spawnSparkle();
+            }
+
+            restartSparkles();
+        }
+
+        logoSecret.addEventListener("click", () => {
+            logoClicks += 1;
+            window.clearTimeout(logoClickTimer);
+
+            if (logoClicks === 1) {
+                showToast("Secret unlocked: RakGay initialized. Nametags now 12% fruitier.");
+            } else if (logoClicks === 3) {
+                document.body.classList.toggle("party-mode");
+                setPartyMusic(document.body.classList.contains("party-mode"));
+                restartSparkles();
+
+                if (document.body.classList.contains("party-mode") && !reduceMotion) {
+                    for (let i = 0; i < 18; i += 1) {
+                        spawnSparkle();
+                    }
+                }
+
+                showToast(document.body.classList.contains("party-mode")
+                    ? "Party mode enabled. Soundtrack deployment in progress."
+                    : "Party mode disabled. Back to professionally managed homosexuality.");
+                logoClicks = 0;
+                return;
+            }
+
+            logoClickTimer = window.setTimeout(() => {
+                logoClicks = 0;
+            }, 900);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key.length === 1) {
+                typedBuffer = (typedBuffer + event.key.toLowerCase()).slice(-12);
+
+                if (secretWords.some((word) => typedBuffer.endsWith(word))) {
+                    showToast("Console: YSI loaded, crashdetect quiet, vibes immaculate.");
+                    typedBuffer = "";
+                }
+            }
+
+            konamiBuffer.push(event.key);
+            konamiBuffer = konamiBuffer.slice(-konamiCode.length);
+
+            if (konamiCode.every((key, index) => konamiBuffer[index] === key)) {
+                document.body.classList.toggle("party-mode");
+                setPartyMusic(document.body.classList.contains("party-mode"));
+                restartSparkles();
+                showToast(document.body.classList.contains("party-mode")
+                    ? "Konami accepted. Legacy disco compatibility mode enabled."
+                    : "Legacy disco compatibility mode disabled.");
+                konamiBuffer = [];
             }
         });
 
-        // Add click effects to cards
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', function(e) {
-                const ripple = document.createElement('div');
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
-                ripple.style.transform = 'scale(0)';
-                ripple.style.animation = 'ripple 0.6s linear';
-                ripple.style.left = (e.clientX - card.offsetLeft) + 'px';
-                ripple.style.top = (e.clientY - card.offsetTop) + 'px';
-                ripple.style.width = '20px';
-                ripple.style.height = '20px';
-                
-                card.appendChild(ripple);
-                
-                setTimeout(() => ripple.remove(), 600);
+        document.querySelector(".ticker").addEventListener("click", () => {
+            showToast("Uptime detail: 3 restarts, 14 drama incidents, 0 straight-only protocols.");
+        });
+
+        secretStats.forEach((stat) => {
+            stat.addEventListener("click", () => {
+                if (stat.dataset.secretStat === "support") {
+                    showToast("Support queue status: one mapper crying, two scripters fighting, zero real emergencies.");
+                } else if (stat.dataset.secretStat === "protocols") {
+                    showToast("Audit complete: all remaining straight-only protocols were removed in build gay.0.3.8.");
+                }
             });
         });
 
-        // Add ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
+        codeSecrets.forEach((secret) => {
+            secret.addEventListener("click", () => {
+                if (secret.textContent.includes("GetPlayerSexuality")) {
+                    showToast("Native call returned: PLAYER_ORIENTATION_FABULOUS.");
+                } else if (secret.textContent.includes("SetServerPride")) {
+                    showToast("Server pride set to MAXIMUM. Restart not required, but encouraged for drama.");
+                } else if (secret.textContent.includes("OnPlayerComeOut")) {
+                    showToast("Callback unavailable in legacy Pawn. Please upgrade your emotional toolchain.");
                 }
-            }
-        `;
-        document.head.appendChild(style);
+            });
+        });
     </script>
 </body>
 </html>
